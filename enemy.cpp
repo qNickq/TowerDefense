@@ -3,6 +3,7 @@
 
 Enemy::Enemy(Road _way, int wave) : way(_way)
 {
+    distance = 0;
     sprite = new QPixmap(":/res/images/Enemy.png");
     max_hp = 100 + 20*wave;
     current_hp = max_hp;
@@ -20,6 +21,8 @@ void Enemy::move()
 
     if(this->scenePos() != way.getPoints().last())
     {
+        distance += (this->scenePos() - way.getPoints()[point]).manhattanLength();
+
         if(this->scenePos() == way.getPoints()[point]) ++point;
         else
         {
@@ -69,6 +72,11 @@ void Enemy::stop()
 int Enemy::getPoint()
 {
     return point;
+}
+
+int Enemy::getDistance()
+{
+    return  distance;
 }
 
 void Enemy::damaged(int damage)

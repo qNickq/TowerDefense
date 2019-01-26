@@ -12,6 +12,7 @@ public:
     Enemy(Road, int wave);
     ~Enemy();
     int getPoint();
+    int getDistance();
     void damaged(int);
 
 protected:
@@ -31,11 +32,12 @@ private:
     QTimer * life;
     Road way;
 
+    int distance;
     int prize;
     int point;
     int max_hp;
     int current_hp;
-    double speed;
+    int speed;
     double dy;
     double dx;
 };
